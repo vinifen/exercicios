@@ -1,8 +1,6 @@
 É necessário ter node, npm, typescript para executar.
 comandos úteis:
-tsc --init
 npm install prompt-sync
-npm install -g tsconfig
 
 video ajuda: 
 https://www.youtube.com/watch?v=rBBlZVUmxsA&t=2401s&ab_channel=AngeloLuz
