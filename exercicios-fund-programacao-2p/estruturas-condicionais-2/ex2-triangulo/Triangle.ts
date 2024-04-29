@@ -12,11 +12,18 @@ export default class Triangle{
         this.side3 = side3;
     }
 
+    public triangleValidator(): boolean{
+        let longestSide: number = Math.max(this.side1, this.side2, this.side3);
+        let sumSides: number = this.side1 + this.side2 + this.side3;
+        sumSides -= longestSide;
+        return sumSides > longestSide;
+    }
+
     /*public triangleValidator(): string{
         if((this.side1 + this.side2) > this.side3 && (this.side1 + this.side3) > this.side2 && (this.side2 + this.side3) > this.side1)
             return "Is triangle.";
         return "Not triangle."
-    }*/
+    }
 
     public getLongestSide(): number{
         return Math.max(this.side1, this.side2, this.side3);
@@ -34,5 +41,5 @@ export default class Triangle{
         if((this.getMiddleSide() + this.getSmallestSide()) > this.getLongestSide())
             return "Is triangle."
         return "Not triangle."
-    }
+    }*/
 }

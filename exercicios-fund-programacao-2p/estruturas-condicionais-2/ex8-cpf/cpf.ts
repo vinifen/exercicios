@@ -14,4 +14,13 @@ export default class CPF{
     public verificationCPF(): boolean{
         return this.cpfNumber.length == 9 && this.verificationNumber.length == 2;
     }
+
+    /*public verificationCPF(): boolean{
+        if(this.cpfNumber.length == 9 && this.verificationNumber.length == 2){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }*/
 }

@@ -5,4 +5,4 @@ import Number from "./Number";
 import PromptSync from "prompt-sync";
 const prompt = PromptSync();
 const fisrtNumber: Number = new Number(parseInt(prompt('Numero para romano: ')));
-console.log(fisrtNumber.romanNumber());
+console.log(fisrtNumber.toString());
