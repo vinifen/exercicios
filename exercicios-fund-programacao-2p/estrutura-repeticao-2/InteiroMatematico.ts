@@ -27,24 +27,35 @@ export default class InteiroMatematico{
     Retorne uma cadeia de caracteres formatada com a tabuada de n*/
 
     public tabuada(): string{
-        let string: string = String(this.n) + " ";
+        /*let string: string = String(this.n) + " ";
         let aux: number = this.n;
         for(let i: number = 2; i < 11; i++){
             aux = i * this.n;
             string = string + String(aux) + " ";
         }
-        return string;
+        return string;*/
+        let aux: string = "";
+        
+        for(let i = 0; i <= 10; i++){
+            aux += this.n + "x"
+                + i + " = " + 
+                (this.n * i) + "\n";
+        }
+        return aux;
     }
 
     /*Exercício 3
     numeroDeDivisores()
     Retorne o número de divisores (inteiros e positivos) de n*/
 
-    public numeroDivisores(): void {
-        for (let i: number = 1; i <= this.n; i++){
+    public numeroDivisores(): number {
+        let cont: number = 0;
+        for (let i: number = 1; i <= (this.n / 2); i++){
             if(this.n % i == 0)
-                console.log(i);    
+                cont ++;
+                
         }
+        return cont;
     }
 
 
@@ -154,6 +165,7 @@ export default class InteiroMatematico{
     deve ser booleano.*/
 
     public isTriangular(): boolean {
+        //n = n * (n+1)*(n+2)
         return false;
     }
 
@@ -179,5 +191,126 @@ export default class InteiroMatematico{
         if (característica * característica == this.n)
             return true; 
         return false;
+    }
+
+    /*Exercício 12
+    maiorDivisor()
+    Retorne o maior divisor de n, exceto ele próprio. Se n = 0, ou n = 1, retorne 1. Caso n = 24, por
+    exemplo, deve-se retornar 12.*/
+
+    public maiorDivisor(): number {
+        if(this.n == 0)
+            return 1;
+        let cont: number = 1;
+        let metade: number = Math.trunc(this.n / 2);
+        if (this.n % 2 == 0){
+            return metade;
+        }
+        for(let i = 1; i <= metade; i++){    
+            if(this.n % i == 0){
+                cont = i;
+            }
+        }
+        return cont;   
+    }
+
+    /*Exercício 13
+    menorDivisor()
+    Retorne o menor divisor de n, exceto 1. Se n = 0, ou n = 1, retorne 1. Caso n = 24, por exemplo,
+    deve-se retornar 2.*/
+
+    public menorDivisor(): number{
+        for (let i = 2; i <= (this.n / 2); i++){
+            if(this.n % i == 0)
+                return i;
+        } 
+        return this.n;
+    }
+
+    /*Exercício 14
+    mdc()
+    O Máximo Divisor Comum (MDC) entre dois números m e n é o maior número inteiro encontrado, que
+    seja fator dos outros dois. Por exemplo, mdc(16, 8) = 8. A definição abrange qualquer número de
+    termos, por exemplo mdc(m, n, o, p).
+    Calcule e retorne o mdc(m, n), sendo m fornecido como parâmetro.*/
+
+    public mdc(m: number): number {
+        let i: number = 0;
+        let aux = this.n;
+        let cont: number = 1;
+        while(i <= aux || i <= m){
+            i ++;
+            if(aux % i == 0 && m % i == 0){ 
+                cont = cont * i;
+                aux = aux / i;
+                m = m / i;
+                i = 1;
+            }
+        }
+        return cont;
+    }
+
+    /*Exercício 15
+    mdcEficiente()
+    Retorne o mdc(m, n) calculado desta outra maneira:
+    mdc(36, 10)
+    a b resto
+    36 10 6
+    10 6 4
+    6 4 2
+    4 2 0
+    mdc = 2 = b
+    Observe que o resto da divisão de a por b, ao final, é igual a zero.*/
+
+    public mdcEficiente(m: number): number {
+        let aux = this.n;
+        while (m !== 0){
+            let temp = m;
+            m = aux % m;
+            aux = temp;
+        }
+        return aux;
+    }
+
+    /*Exercício 16
+    mmc()
+    O Mínimo Múltiplo Comum (MMC) de dois inteiros, m e n, é o menor inteiro positivo múltiplo
+    simultaneamente de m e de n. Se não existir tal inteiro positivo, por exemplo, se m = 0 ou n = 0, então
+    mmc(m, n) é zero por definição.
+    Calcule e retorne o mmc(m, n), sendo m fornecido como parâmetro.*/
+
+    public mmc(m: number): number {
+        let i: number = 1;
+        let aux = this.n;
+        let cont: number = 1;
+        while(i <= aux || i <= m){
+            i ++;
+            if(aux % i == 0 && m % i == 0){ 
+                cont = cont * i;
+                aux = aux / i;
+                m = m / i;
+                i = 1;
+            }
+            else if(aux % i == 0){
+                cont = cont * i;
+                aux = aux / i;
+                i = 1;
+            }
+            else if(m % i == 0){
+                cont = cont * i;
+                m = m / i;
+                i = 1;
+            }
+        }
+        return cont;
+    }
+
+    /*Exercício 17
+    mmcEficiente()
+    Retorne o mmc(m, n) calculado eficientemente:
+    mmc = m * n / mdc(m, n)*/
+
+    public mmcEficiente(m: number): number{
+        return this.n * m / this.mdc(m);
     }
 }

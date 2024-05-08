@@ -66,7 +66,7 @@ export default class PainelContador{
     public contagemPares(): number []{
         let numeros: number[] = [];
         let i: number = this.minimum;
-        if(i % 2 == 0){
+        /*if(i % 2 == 0){
             do{ numeros.push(i);
                 i += 2;   
             }while (i <= this.maximum);
@@ -76,6 +76,14 @@ export default class PainelContador{
         do{ numeros.push(i);
             i += 2;
         }while (i <= this.maximum);
+        return numeros;*/
+
+        if(i % 2 != 0)
+            i++
+        while (i <= this.maximum){
+            numeros.push(i);
+            i += 2;
+        }
         return numeros;
     }
 

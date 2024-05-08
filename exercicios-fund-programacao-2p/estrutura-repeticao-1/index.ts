@@ -11,9 +11,9 @@ const intervalo: PainelContador = new PainelContador(parseInt(prompt("Início do
 
 //console.log(intervalo.contagemDecrescente());
 
-//console.log(intervalo.contagemPares());
+console.log(intervalo.contagemPares());
 
-console.log(intervalo.contagemImpares());
+//console.log(intervalo.contagemImpares());
 
 //console.log(intervalo.contagemPasso(parseInt(prompt("Passos: "))));
 

@@ -16,6 +16,9 @@ let numero: InteiroMatematico = new InteiroMatematico(parseInt(prompt("Numero: "
 //Exercício 2
 //console.log(numero.tabuada());
 
+//Exercício 3
+//console.log(numero.numeroDivisores());
+
 //Exercício 4
 //console.log(numero.produtoPelaSoma(parseInt(prompt("M: "))));
 
@@ -38,4 +41,23 @@ let numero: InteiroMatematico = new InteiroMatematico(parseInt(prompt("Numero: "
 //console.log(numero.isTriangular());
 
 //Exercício 11
-console.log(numero.isSomaDosQuadrados());
+//console.log(numero.isSomaDosQuadrados());
+
+//Exercício 12
+//console.log(numero.maiorDivisor());
+
+//Exercício 13
+//console.log("Menor divisor de " + numero.getN() + " é " + numero.menorDivisor());
+
+//Exercício 14
+//console.log(numero.mdc(parseInt(prompt("M: "))));
+
+//Exercício 15
+//console.log(numero.mdcEficiente(parseInt(prompt("M: "))));
+
+//Exercício 16
+//console.log(numero.mmc(parseInt(prompt("M: "))));
+
+//Exercício 17
+//console.log(numero.mmcEficiente(parseInt(prompt("M: "))));
+
