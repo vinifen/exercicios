@@ -11,7 +11,13 @@ export default class InteiroMatematico{
     private n: number;
 
     constructor(n: number){
-        this.n = n;
+        this.n = this.modulo(n);
+    }
+
+    public modulo(n: number): number {
+        if (n < 0)
+            n = -n;
+        return n;
     }
 
     public getN(): number{
@@ -55,6 +61,7 @@ export default class InteiroMatematico{
                 cont ++;
                 
         }
+        cont++
         return cont;
     }
 
@@ -139,7 +146,6 @@ export default class InteiroMatematico{
         let y = 1;
         let z = 0;
         for(let i: number = 1; i <= this.n; i++){
-            console.log("oi");
             z = x;
             x = y;
             y = z + y;
@@ -147,7 +153,7 @@ export default class InteiroMatematico{
         return x;
     }
 
-    /*Exercício 9***
+    /*Exercício 9
     tribonacci()
     Retorne o n-ézimo primeiro termo da série de Tribonacci. Um número Tribonacci assemelha-se a um
     número de Fibonacci, mas em vez de se começar com dois termos predefinidos, a sequência é
@@ -155,7 +161,17 @@ export default class InteiroMatematico{
     precedentes: 1, 1, 2, 4, 7, 13, 24, 44, 81, 149 (e, assim, sucessivamente).*/
 
     public tribonacci(){
-         return 0;
+        let w = 0;
+        let x = 1;
+        let y = 1;
+        let z = 0;
+        for(let i: number = 3; i <= this.n; i++){
+            z = w + x + y;
+            w = x;
+            x = y;
+            y = z;
+        }
+        return y;
     }
     
     /*Exercício 10***
@@ -165,8 +181,13 @@ export default class InteiroMatematico{
     deve ser booleano.*/
 
     public isTriangular(): boolean {
-        //n = n * (n+1)*(n+2)
-        return false;
+        for (let i = 1; i <= this.n / 2; i++){
+            if(i * (i+1)*(i+2) == this.n)
+                return true;
+            else if(i * (i+1)*(i+2) > this.n)
+                return false;
+        }
+        return true;
     }
 
     /*Exercício 11
@@ -312,5 +333,206 @@ export default class InteiroMatematico{
 
     public mmcEficiente(m: number): number{
         return this.n * m / this.mdc(m);
+    }
+
+    /*Exercício 18
+    isPrimo()
+    Retorne se n é um número primo.*/
+
+    public isPrimo(): boolean {
+        if (this.n <= 1)
+            return false;
+        for (let i = 2; i < this.n; i++){
+            if(this.n % i == 0)
+                return false;
+        }
+        return true;
+
+    }
+
+    /*Exercício 19 (importantíssimo)
+    isPrimoEficiente()
+    Observe que, quanto maior o número de comparações desnecessárias, mais ineficiente é o algoritmo.
+    A fatoração é uma maneira fácil (e lenta) de saber se um número natural é primo, pois basta saber se
+    a quantidade de divisores é 2 (e esse método já está implementado na lista!). Revise, nesse sentido,
+    o algoritmo implementado pelo exercício anterior.*/
+
+    public isPrimoEficiente(){
+        if (this.n <= 1)
+            return false;
+        for (let i = 2; i <= Math.sqrt(this.n); i++){
+            if (this.n % i == 0)
+                return false;
+        }
+        return true
+    }
+
+    /*Exercício 20
+    isPerfeito()
+    Retorne se n é um número perfeito, reduzido ou abundante.
+    Dado n, inteiro e positivo, diz-se que n é perfeito se for igual à soma de seus divisores positivos
+    diferentes dele mesmo. Assim, 6 é um número perfeito, pois 1 + 2 + 3 = 6. Contudo, números
+    perfeitos são bastante raros: o quinto número perfeito é 33.550.336.
+    No século I d.C., havia, além da divisão dos números perfeitos, os números abundantes e os
+    reduzidos:
+    – abundantes: se o número é inferior à soma dos seus divisores exceto ele próprio;
+    Por exemplo, 12: 1 + 2 + 3 + 4 + 6 = 16.
+    – reduzidos: se o número é superior à soma dos seus divisores exceto ele próprio;
+    Por exemplo, 9: 1 + 3 = 4.
+    Isto posto, os retornos possíveis são -1, 0 e 1, classificando n como, respectivamente, reduzido,
+    perfeito ou abundante.*/
+
+    public isPerfeito(): number{
+        let cont: number = 0;
+        for (let i = 1; i <= (this.n / 2); i++){
+            if (this.n % i == 0)
+                cont = cont + i;    
+        }
+        if(cont < this.n){
+            return -1;
+        }
+        if(cont == this.n){
+            return 0;
+        }
+        return 1;
+    }
+
+    /*Exercício 21
+    isRaizExata()
+    Retorne se a raiz de n é exata. Para isso, subtraia de n os ímpares consecutivos a partir de 1, até que
+    o resultado da subtração seja menor ou igual a zero. O número de vezes que se conseguir fazer a
+    subtração é a raiz quadrada exata (resultado 0) ou aproximada de n (resultado negativo).
+    Observe:
+    Raiz de 16
+    16 – 1 = 15 – 3 = 12 – 5 = 7 – 7 = 0
+     ^ ^ ^ ^ = 4 (raiz exata)
+    Raiz de 15
+    15 – 1 = 14 – 3 = 11 – 5 = 6 – 7 = -1
+     ^ ^ ^ ^ = 4 (raiz está entre 3 e 4)*/
+
+    public isRaizExata(): string{
+        let cont: number = 0,
+            aux: number = this.n,
+            i: number = 1;
+        while (aux > 0){
+            aux = aux - i;
+            i += 2;
+            cont ++;
+        }
+        if (aux < 0)
+            return "Raiz está entre " + (cont - 1) + " e " + cont;
+        return "Raiz é " + cont;
+    }
+
+    /*Exercício 22
+    tresN()
+    Suponha um número n qualquer, se n é par então n agora é n/2, se n é ímpar, n agora é 3*n+1. Assim
+    para n = 3, calculamos a seguinte tabela:
+     3 ► 10 4 ► 2
+    10 ► 5 2 ► 1
+     5 ► 16 1 ► 4
+    16 ► 8 4 ► 2
+     8 ► 4 2 ► 1
+    Observe que a partir da sétima iteração, a sequência 4 2 1 começa a se repetir. Calcule e retorne,
+    para n, o número de iterações para se chegar ao primeiro 1.*/
+
+    public tresN(): number {
+        let n: number = this.n;
+        let cont: number = 0;
+        while(n > 1){
+            if(n % 2 == 0)
+                n /= 2;
+            else n = (3*n)+1;
+            cont ++;
+        }
+        return cont++;
+    }
+
+    /*Exercício 23
+    neperiano()
+    Na matemática, o número neperiano (também conhecido como número de Euler, número de Napier,
+    constante de Néper, constante matemática e, número exponencial) é a base dos logaritmos naturais.
+    O número neperiano é definido pelo seguinte limite e vale aproximadamente
+    2,718.281.828.459.045.235.360.287.
+
+    e = lim(1 + 1/n)^n
+        n-->8(infinito)
+
+    O número também pode ser escrito como a soma da série infinita:
+
+         8(infinito)        
+    e =  Σ 1/n! = 1/0! + 1/1! + 1/2! + 1/3! + 1/4! + ...
+        n=0
+
+    Considerando que a fórmula da série infinita acima apresenta cinco termos visíveis (1/4! é o quinto),
+    calcule e retorne o número neperiano para n termos. O cálculo do fatorial deve ser feito de maneira
+    iterativa.*/
+
+    public neperiano(): number {
+        let cont: number = 1;
+        let n: number = 1;
+    
+        for (let i = 1; i <= this.n - 1; i++) {
+            n = 1;
+            for (let y = 1; y <= i; y++) {
+                n = n * y;
+            }
+            cont += 1 / n;
+        }
+        return cont;
+    }
+    
+    /*Exercício 24
+    neperianoEficiente()
+    Caso, na resolução do exercício anterior, tenham sido utilizados comandos de iteração aninhados,
+    tente resolvê-lo com um único comando de iteração.*/
+    
+    public neperianoEficiente(): number{
+        let cont: number = 1;
+        let n: number = 1;
+        for(let i = 1; i <= this.n - 1; i++){
+            n = n * i;
+            cont += 1 / n;
+        }
+        return cont;
+    }
+
+    /*Exercício 25
+    sen()
+    Calcule e retorne o sen(n), considerando que n é um ângulo representado em radianos. O valor do
+    seno de n será calculado pela soma dos 5 primeiros termos da série a seguir:
+    sen n = n – (n^3)/3! + (n^5)/5! – (n^7)/7! + ...
+    Os cálculos das potências e dos fatoriais devem ser feitos de maneira iterativa.*/
+
+    public sen(): number {
+        let nQuadrado: number = this.n * this.n;
+        let n: number = this.n
+        let fatorial: number = 1;
+        let i: number = 2;
+        let x: number = 3;
+        let cont = this.n;
+        let y: number = 1;
+        let sinal: number = -1;
+        while (i < x){
+            console.log(x);
+            nQuadrado = nQuadrado * n;
+            console.log(nQuadrado);
+            i ++;
+            console.log(i);
+            if(i % 2 != 0 && x < 11){ 
+                while(y <= x){
+                    fatorial = fatorial * y;
+                    y++
+                    console.log(fatorial);
+                }
+                cont = cont + (sinal * (nQuadrado / fatorial));
+                sinal *= -1;
+                console.log(cont);
+                fatorial = 1;
+                y = 1;
+                x += 2;
+            }
+        }
+        return cont;
     }
 }

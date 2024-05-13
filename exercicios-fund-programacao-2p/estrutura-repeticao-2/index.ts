@@ -34,10 +34,10 @@ let numero: InteiroMatematico = new InteiroMatematico(parseInt(prompt("Numero: "
 //Exercício 8
 //console.log(numero.fibonacci());
 
-//Exercício 9***
+//Exercício 9
 //console.log(numero.tribonacci());
 
-//Exercício 10***
+//Exercício 10
 //console.log(numero.isTriangular());
 
 //Exercício 11
@@ -61,3 +61,26 @@ let numero: InteiroMatematico = new InteiroMatematico(parseInt(prompt("Numero: "
 //Exercício 17
 //console.log(numero.mmcEficiente(parseInt(prompt("M: "))));
 
+//Exercício 18
+//console.log(numero.isPrimo());
+
+//Exercício 19
+//console.log(numero.isPrimoEficiente());
+
+//Exercício 20
+//console.log(numero.isPerfeito());
+
+//Exercício 21
+//console.log(numero.isRaizExata());
+
+//Exercício 22
+//console.log(numero.tresN());
+
+//Exercício 23
+//console.log(numero.neperiano());
+
+//Exercício 24
+//console.log(numero.neperianoEficiente());
+
+//Exercício 25***
+console.log(numero.sen());
