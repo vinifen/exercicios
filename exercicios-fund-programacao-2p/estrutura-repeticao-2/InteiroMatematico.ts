@@ -358,9 +358,15 @@ export default class InteiroMatematico{
     o algoritmo implementado pelo exercício anterior.*/
 
     public isPrimoEficiente(){
-        if (this.n <= 1)
+        if (this.n < 2) 
             return false;
-        for (let i = 2; i <= Math.sqrt(this.n); i++){
+        if (this.n <= 3) 
+            return true;
+        if (this.n % 2 == 0 || this.n % 3 == 0)  
+            return false;
+        let sqrt = Math.sqrt(this.n)
+        for (let i = 4; i <= sqrt; i++){
+            console.log("oi");
             if (this.n % i == 0)
                 return false;
         }
@@ -493,45 +499,7 @@ export default class InteiroMatematico{
         for(let i = 1; i <= this.n - 1; i++){
             n = n * i;
             cont += 1 / n;
-        }
-        return cont;
-    }
-
-    /*Exercício 25
-    sen()
-    Calcule e retorne o sen(n), considerando que n é um ângulo representado em radianos. O valor do
-    seno de n será calculado pela soma dos 5 primeiros termos da série a seguir:
-    sen n = n – (n^3)/3! + (n^5)/5! – (n^7)/7! + ...
-    Os cálculos das potências e dos fatoriais devem ser feitos de maneira iterativa.*/
-
-    public sen(): number {
-        let nQuadrado: number = this.n * this.n;
-        let n: number = this.n
-        let fatorial: number = 1;
-        let i: number = 2;
-        let x: number = 3;
-        let cont = this.n;
-        let y: number = 1;
-        let sinal: number = -1;
-        while (i < x){
-            console.log(x);
-            nQuadrado = nQuadrado * n;
-            console.log(nQuadrado);
-            i ++;
-            console.log(i);
-            if(i % 2 != 0 && x < 11){ 
-                while(y <= x){
-                    fatorial = fatorial * y;
-                    y++
-                    console.log(fatorial);
-                }
-                cont = cont + (sinal * (nQuadrado / fatorial));
-                sinal *= -1;
-                console.log(cont);
-                fatorial = 1;
-                y = 1;
-                x += 2;
-            }
+            console.log(cont);
         }
         return cont;
     }

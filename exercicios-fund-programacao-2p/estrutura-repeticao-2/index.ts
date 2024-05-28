@@ -80,7 +80,7 @@ let numero: InteiroMatematico = new InteiroMatematico(parseInt(prompt("Numero: "
 //console.log(numero.neperiano());
 
 //Exercício 24
-//console.log(numero.neperianoEficiente());
+console.log(numero.neperianoEficiente());
 
 //Exercício 25***
-console.log(numero.sen());
+//console.log(numero.sen());
