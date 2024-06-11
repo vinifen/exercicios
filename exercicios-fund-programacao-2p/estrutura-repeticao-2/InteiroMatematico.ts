@@ -75,6 +75,9 @@ export default class InteiroMatematico{
     public produtoPelaSoma(m: number): number{
         let i: number = 0;
         let aux: number = this.n;
+        m = this.modulo(m);
+        /*if(m == 0 || this.n == 0)
+            return 0;
         if (m > this.n){
             while (i < this.n){
                 aux = m + m;
@@ -86,8 +89,19 @@ export default class InteiroMatematico{
                 aux = this.n + this.n;
                 i++;
             }
-        } 
-        return aux;
+        } */
+        let cont: number = this.n;
+        if (m > aux){
+            cont = m;
+            m = this.n;
+        }
+        let resultado: number = m;
+        console.log(m);
+        console.log(aux);
+        for (let i = 1; i < cont; i++){
+            resultado = resultado + m;
+        }
+        return resultado;
     }
 
     /*Exercício 5
@@ -358,16 +372,14 @@ export default class InteiroMatematico{
     o algoritmo implementado pelo exercício anterior.*/
 
     public isPrimoEficiente(){
-        if (this.n < 2) 
+        const raiz: number = Math.sqrt(this.n); 
+        if (this.n < 2)
             return false;
-        if (this.n <= 3) 
+        if (this.n <= 3)
             return true;
-        if (this.n % 2 == 0 || this.n % 3 == 0)  
-            return false;
-        let sqrt = Math.sqrt(this.n)
-        for (let i = 4; i <= sqrt; i++){
-            console.log("oi");
+        for (let i = 4; i <= raiz; i++){
             if (this.n % i == 0)
+                console.log("oi");
                 return false;
         }
         return true
@@ -499,7 +511,40 @@ export default class InteiroMatematico{
         for(let i = 1; i <= this.n - 1; i++){
             n = n * i;
             cont += 1 / n;
-            console.log(cont);
+        }
+        return cont;
+    }
+
+    /*Exercício 25
+    sen()
+    Calcule e retorne o sen(n), considerando que n é um ângulo representado em radianos. O valor do
+    seno de n será calculado pela soma dos 5 primeiros termos da série a seguir:
+    sen n = n – (n^3)/3! + (n^5)/5! – (n^7)/7! + ...
+    Os cálculos das potências e dos fatoriais devem ser feitos de maneira iterativa.*/
+
+    public sen(): number {
+        let nQuadrado: number = this.n * this.n;
+        let n: number = this.n
+        let fatorial: number = 1;
+        let i: number = 2;
+        let x: number = 3;
+        let cont = this.n;
+        let y: number = 1;
+        let sinal: number = -1;
+        while (i < x){
+            nQuadrado = nQuadrado * n;
+            i ++;
+            if(i % 2 != 0 && x < 11){ 
+                while(y <= x){
+                    fatorial = fatorial * y;
+                    y++;    
+                }
+                cont = cont + (sinal * (nQuadrado / fatorial));
+                sinal *= -1;
+                fatorial = 1;
+                y = 1;
+                x += 2;
+            }
         }
         return cont;
     }
